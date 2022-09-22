@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Main" default="run" basedir=".">
+    <property name="src" value="src"/>
+    <property name="build" location="build"/>
+    <property name="dest" value="${build}/classes"/>
+    <property name="main_jar" value="mainAnt.jar"/>
+
+    <target name="init">
+        <mkdir dir="${dest}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${dest}" includeAntRuntime="false"/>
+    </target>
+
+    <target name="buildPackage" depends="compile">
+        <jar destfile="${build}/${main_jar}" basedir="${dest}">
+            <manifest>
+                <attribute name="Main-Class" value="${ant.project.name}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${ant.project.name}" classpath="${dest}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${dest}"/>
+        <delete file="${build}/${main_jar}"/>
+    </target>
+
+    <target name="clerun" depends="clean, run">
+        <ant target="clean"/>
+        <ant target="run"/>
+    </target>
+</project>
