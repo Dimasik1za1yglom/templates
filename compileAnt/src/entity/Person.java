@@ -1,4 +1,4 @@
-package main.entity;
+package entity;
 
 public class Person {
     private final String name;
@@ -16,6 +16,7 @@ public class Person {
     public Integer getAge() {
         return age;
     }
+
     public String getDocumentation() {
         return String.format("Name person: %s.\n " +
                 "Age person: %d", name, age);

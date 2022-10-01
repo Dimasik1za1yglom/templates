@@ -1,6 +1,4 @@
-package main;
-
-import main.entity.Person;
+import entity.Person;
 
 import java.util.Scanner;
 
